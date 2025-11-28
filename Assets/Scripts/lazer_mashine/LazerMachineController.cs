@@ -1,29 +1,25 @@
+using Assets.Scripts.lazer_mashine;
+using reactiveProperty;
 using System;
 using UnityEngine;
+using Zenject;
 
 public class LazerMachineController : MonoBehaviour
 {
-    [SerializeField] private Vector2 maxpositions;
-    [SerializeField] private Transform center;
+    [SerializeField] private Animator lazerAnimator;
+    private LazerData[] lazerDatas;
+    public ReactiveProperty<Tuple<float,StateLazer>> statelazer { get; private set; } = new ReactiveProperty<Tuple<float, StateLazer>>();
 
-    private void OnDrawGizmos()
+    [Inject]
+    public void Construct(LazerData[] lazerDatas)
     {
-        Gizmos.color = Color.white;
+        this.lazerDatas = lazerDatas;
+    }
 
-        var pointx1 = new Vector3(center.position.x + (maxpositions.x / 2), center.position.y, center.position.z + (maxpositions.y / 2));
-        var pointy1 = new Vector3(center.position.x + (maxpositions.x / 2), center.position.y, center.position.z + (-maxpositions.y / 2));
-        var pointx2 = new Vector3(center.position.x + (-maxpositions.x / 2), center.position.y, center.position.z + (-maxpositions.y / 2));
-        var pointy2 = new Vector3(center.position.x + (-maxpositions.x / 2), center.position.y, center.position.z + (maxpositions.y / 2));
-
-        var points = new Vector3[]
-        {
-            pointx1,
-            pointy1,
-            pointx2,
-            pointy2
-        };
-        ReadOnlySpan<Vector3> vector3s = new ReadOnlySpan<Vector3>(points);
-
-        Gizmos.DrawLineList(vector3s);
+    public void changeState(float time, StateLazer state)
+    {
+        this.statelazer.Value = new Tuple<float, StateLazer>(time ,state);
+        Debug.Log(state);
+        Debug.Log(time);
     }
 }

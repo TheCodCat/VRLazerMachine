@@ -36,11 +36,21 @@ public class LazerItemController : MonoBehaviour
             (_,_) => false
         };
 
+        processB.interactable = arg2.Item2 switch
+        {
+            StateLazer.None => true,
+            _=> false
+        };
     }
 
     public void ChangePreview()
     {
         isPreview = !isPreview;
         _lazerMachineController.CurrentAction_OnChanged(new System.Tuple<Assets.Scripts.UI.TypeButtonSelect, string>(Assets.Scripts.UI.TypeButtonSelect.preview, _lazerData.PreviewName));
+    }
+
+    public void ChangeProcess()
+    {
+        _lazerMachineController.CurrentAction_OnChanged(new System.Tuple<Assets.Scripts.UI.TypeButtonSelect, string>(Assets.Scripts.UI.TypeButtonSelect.process, _lazerData.TriggerName));
     }
 }

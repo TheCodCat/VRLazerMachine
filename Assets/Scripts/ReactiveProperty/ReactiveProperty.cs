@@ -14,7 +14,8 @@ namespace reactiveProperty
             set
             {
                 var old = _value;
-                if(!equalityComparer.Equals(old, value))
+                _value = value;
+                if(!equalityComparer.Equals(old, _value))
                     OnChanged?.Invoke(old, value);
             }
         }

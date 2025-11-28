@@ -1,16 +1,46 @@
+using Assets.Scripts.lazer_mashine;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LazerItemController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private TMP_Text description;
+    [SerializeField] private Button previewB;
+    [SerializeField] private Button processB;
+    private LazerData _lazerData;
+    private LazerMachineController _lazerMachineController;
+    private UIController _uiController;
+    private bool isPreview;
+    public void Construct(LazerData lazerData, UIController uiController, LazerMachineController lazerMachineController)
     {
-        
+        _lazerData = lazerData;
+        description.text = lazerData.Description;
+        _uiController = uiController;
+        _lazerMachineController = lazerMachineController;
+
+        _lazerMachineController.statelazer.OnChanged += Statelazer_OnChanged;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDestroy()
     {
-        
+        _lazerMachineController.statelazer.OnChanged -= Statelazer_OnChanged;
+    }
+
+    private async void Statelazer_OnChanged(System.Tuple<float, Assets.Scripts.lazer_mashine.StateLazer> arg1, System.Tuple<float, Assets.Scripts.lazer_mashine.StateLazer> arg2)
+    {
+        previewB.interactable = (arg2.Item2, isPreview) switch
+        {
+            (StateLazer.None, _) => true,
+            (StateLazer.ViewUp, true) => true,
+            (_,_) => false
+        };
+
+    }
+
+    public void ChangePreview()
+    {
+        isPreview = !isPreview;
+        _lazerMachineController.CurrentAction_OnChanged(new System.Tuple<Assets.Scripts.UI.TypeButtonSelect, string>(Assets.Scripts.UI.TypeButtonSelect.preview, _lazerData.PreviewName));
     }
 }

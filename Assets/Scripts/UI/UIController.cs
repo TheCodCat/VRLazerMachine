@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private RectTransform parent;
 
     [Inject]
-    public void Construct(LazerData[] lazerData, LazerMachineController lazerMachineController)
+    public void Construct(LazerData[] lazerData, LazerMachineController lazerMachineController, ExtrudeController extrude)
     {
         currentAction = new ReactiveProperty<Tuple<TypeButtonSelect, string>>();
 
@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
         foreach (var item in lazerData)
         {
             var obj = Instantiate<LazerItemController>(_controllerPrefab, parent);
-            obj.Construct(item, this, lazerMachineController);
+            obj.Construct(item, this, lazerMachineController, extrude);
         }
     }
 }

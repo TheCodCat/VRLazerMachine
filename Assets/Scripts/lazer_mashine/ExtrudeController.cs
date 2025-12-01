@@ -1,6 +1,4 @@
-using Cysharp.Threading.Tasks.Triggers;
 using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Zenject;
@@ -26,7 +24,7 @@ public class ExtrudeController : MonoBehaviour
 
     private void ChangeLazerData_OnChanged(Tuple<LazerData, bool> tuple1, Tuple<LazerData, bool> tuple2)
     {
-        projector.material.SetTexture("Base_Map", tuple2.Item1.Decal);
+        projector.material = tuple2.Item1.Decal;
 
         if (tuple2.Item2)
             ActiveProjector();
@@ -49,7 +47,7 @@ public class ExtrudeController : MonoBehaviour
         if(Physics.Raycast(ray, out RaycastHit hitInfo, 1f, layerMask))
         {
             var projectorItem = Instantiate(decalProjectorPrefab, hitInfo.point + new Vector3(0,0.01f,0), Quaternion.Euler(90,0,0), hitInfo.rigidbody.transform);
-            projector.material.SetTexture("Base_Map", lazerMachineController.changeLazerData.Value.Item1.Decal);
+            projector.material = lazerMachineController.changeLazerData.Value.Item1.Decal;
         }
     }
 }

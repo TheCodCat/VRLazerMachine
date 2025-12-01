@@ -22,7 +22,7 @@ public class UIController : MonoBehaviour
         foreach (var item in lazerData)
         {
             var obj = Instantiate<LazerItemController>(_controllerPrefab, parent);
-            obj.Construct(item, this, lazerMachineController, extrude);
+            obj.Construct(item, this, lazerMachineController);
         }
     }
 }

@@ -10,6 +10,7 @@ public class LazerData : ScriptableObject
     [SerializeField] private TypeLazer typeLazer;
     [Space]
     [SerializeField] private Texture2D decal;
+    public Vector3 instancePosition;
 
     public string Description { get => description; }
     public string TriggerName { get => triggerName; }

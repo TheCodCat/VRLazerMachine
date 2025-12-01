@@ -11,15 +11,13 @@ public class LazerItemController : MonoBehaviour
     private LazerData _lazerData;
     private LazerMachineController _lazerMachineController;
     private UIController _uiController;
-    private ExtrudeController extrude;
     private bool isPreview;
-    public void Construct(LazerData lazerData, UIController uiController, LazerMachineController lazerMachineController, ExtrudeController extrudeController)
+    public void Construct(LazerData lazerData, UIController uiController, LazerMachineController lazerMachineController)
     {
         _lazerData = lazerData;
         description.text = lazerData.Description;
         _uiController = uiController;
         _lazerMachineController = lazerMachineController;
-        extrude = extrudeController;
         _lazerMachineController.statelazer.OnChanged += Statelazer_OnChanged;
     }
 
@@ -28,7 +26,7 @@ public class LazerItemController : MonoBehaviour
         _lazerMachineController.statelazer.OnChanged -= Statelazer_OnChanged;
     }
 
-    private void Statelazer_OnChanged(System.Tuple<float, Assets.Scripts.lazer_mashine.StateLazer> arg1, System.Tuple<float, Assets.Scripts.lazer_mashine.StateLazer> arg2)
+    private void Statelazer_OnChanged(System.Tuple<float, StateLazer> arg1, System.Tuple<float, StateLazer> arg2)
     {
         previewB.interactable = (arg2.Item2, isPreview) switch
         {
@@ -49,12 +47,13 @@ public class LazerItemController : MonoBehaviour
         isPreview = !isPreview;
         _lazerMachineController.CurrentAction_OnChanged(new System.Tuple<Assets.Scripts.UI.TypeButtonSelect, string>(Assets.Scripts.UI.TypeButtonSelect.preview, _lazerData.PreviewName));
 
-        if (isPreview)
-            extrude.changeDecalProjector(_lazerData.Decal);
+        _lazerMachineController.changeLazerData.Value = new System.Tuple<LazerData, bool>(_lazerData, true);
     }
 
     public void ChangeProcess()
     {
         _lazerMachineController.CurrentAction_OnChanged(new System.Tuple<Assets.Scripts.UI.TypeButtonSelect, string>(Assets.Scripts.UI.TypeButtonSelect.process, _lazerData.TriggerName));
+        
+        _lazerMachineController.changeLazerData.Value = new System.Tuple<LazerData, bool>(_lazerData, true);
     }
 }

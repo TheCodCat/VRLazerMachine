@@ -9,6 +9,7 @@ public class LazerMachineController : MonoBehaviour
 {
     [SerializeField] private Animator lazerAnimator;
     private UIController uiController;
+    public ReactiveProperty<Tuple<LazerData, bool>> changeLazerData { get; private set; } = new ReactiveProperty<Tuple<LazerData, bool>>(null);
     public ReactiveProperty<Tuple<float,StateLazer>> statelazer { get; private set; } = new ReactiveProperty<Tuple<float, StateLazer>>();
 
     public void changeState(float time, StateLazer state)

@@ -17,4 +17,4 @@ MonoBehaviour:
   previewNameBool: logoPreview
   typeLazer: 0
   decal: {fileID: 2100000, guid: af6ae87548057034bb0c956e9e60162e, type: 2}
-  instancePosition: {x: 0, y: 0, z: 0}
+  instancePosition: {x: -0.6242151, y: 1.193873, z: -1.054595}

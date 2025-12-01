@@ -8,6 +8,7 @@ public class ExtrudeController : MonoBehaviour
     [SerializeField] private DecalProjector projector;
     [SerializeField] private DecalProjector decalProjectorPrefab;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private ParticleSystem ParticleSystem;
     public LazerMachineController lazerMachineController { get; set; }
 
     public void ActiveProjector() => projector.enabled = true;
@@ -49,5 +50,13 @@ public class ExtrudeController : MonoBehaviour
             var projectorItem = Instantiate(decalProjectorPrefab, hitInfo.point + new Vector3(0,0.01f,0), Quaternion.Euler(90,0,0), hitInfo.rigidbody.transform);
             projector.material = lazerMachineController.changeLazerData.Value.Item1.Decal;
         }
+    }
+
+    public void ActiveIscra()
+    {
+        if (!ParticleSystem.isPlaying)
+            ParticleSystem.Play();
+        else
+            ParticleSystem.Stop();
     }
 }

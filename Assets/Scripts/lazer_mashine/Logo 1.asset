@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe6b1777d0014d40a9c584a5156954e, type: 3}
   m_Name: Logo 1
   m_EditorClassIdentifier: Assembly-CSharp::LazerData
-  description: "\u043B\u043E\u0433\u043E\u0442\u0438\u043F"
+  description: "\u043B\u043E\u0433\u043E\u0442\u0438\u043F - 2"
   triggerName: logo
   previewNameBool: logoPreview
   typeLazer: 0

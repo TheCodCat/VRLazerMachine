@@ -10,6 +10,7 @@ public class ChoiseController : MonoBehaviour
     [SerializeField] private Transform chanel;
     [SerializeField] private PlayableDirector director;
     [SerializeField] private ParticleSystem particleSystem;
+    [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool isActive;
     public void ActiveChoise()
     {
@@ -23,6 +24,7 @@ public class ChoiseController : MonoBehaviour
                 { 
                     director.Play();
                     particleSystem.Play();
+                    audioSource.Play();
                 });
 
             chanel.DOShakePosition(1f, 0.01f,10,20).SetLoops(-1);

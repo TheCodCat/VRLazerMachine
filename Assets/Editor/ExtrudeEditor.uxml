@@ -3,6 +3,7 @@
         <uie:PropertyField binding-path="projector" />
         <uie:PropertyField name="PropertyField" binding-path="decalProjectorPrefab" />
         <uie:PropertyField binding-path="layerMask" />
+        <uie:PropertyField binding-path="audioSource" />
         <ui:Button text="Применить позицию" name="changeB" data-source-type="ExtrudeController, Assembly-CSharp" style="margin-top: 10px;" />
     </ui:VisualElement>
 </ui:UXML>

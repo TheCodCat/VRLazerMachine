@@ -3508,7 +3508,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.125
-    functionName: 
+    functionName: ActiveIscra
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -3516,6 +3516,13 @@ AnimationClip:
     messageOptions: 0
   - time: 2.75
     functionName: CreateEngraving
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 3.0833333
+    functionName: ActiveIscra
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

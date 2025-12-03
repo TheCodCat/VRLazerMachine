@@ -9,6 +9,7 @@ public class ExtrudeController : MonoBehaviour
     [SerializeField] private DecalProjector decalProjectorPrefab;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private ParticleSystem ParticleSystem;
+    [SerializeField] private AudioSource audioSource;
     public LazerMachineController lazerMachineController { get; set; }
 
     public void ActiveProjector() => projector.enabled = true;
@@ -55,8 +56,14 @@ public class ExtrudeController : MonoBehaviour
     public void ActiveIscra()
     {
         if (!ParticleSystem.isPlaying)
+        {
             ParticleSystem.Play();
+            audioSource.Play();
+        }
         else
+        {
             ParticleSystem.Stop();
+            audioSource.Stop();
+        }
     }
 }
